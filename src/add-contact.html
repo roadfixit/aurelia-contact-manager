@@ -1,0 +1,41 @@
+<template>
+        <div class="card">
+          <div class="card-header text-white bg-primary">
+            <h3>New contact details</h3>
+          </div>
+          <div class="card-body">
+            <form role="form">
+              <div class="form-group">
+                <label class="col-sm-3 col-form-label">First Name</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="first name" class="form-control" >
+                </div>
+              </div>
+      
+              <div class="form-group">
+                <label class="col-sm-3 col-form-label">Last Name</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="last name" class="form-control" >
+                </div>
+              </div>
+      
+              <div class="form-group">
+                <label class="col-sm-3 col-form-label">Email</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="email" class="form-control" >
+                </div>
+              </div>
+      
+              <div class="form-group">
+                <label class="col-sm-3 col-form-label">Phone Number</label>
+                <div class="col-sm-9">
+                  <input type="text" placeholder="phone number" class="form-control" >
+                </div>
+              </div>
+            </form>
+            <div>
+              <button class="btn btn-success float-right" click.delegate="add()">Add</button>
+          </div>
+          </div>
+        </div>
+      </template>
