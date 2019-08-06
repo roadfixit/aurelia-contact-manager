@@ -1,9 +1,21 @@
+import {HttpClient} from 'aurelia-fetch-client';
+
+let httpClient = new HttpClient();
 let latency = 200;
 let id = 0;
 
 function getId(){
   return ++id;
 }
+
+httpClient.fetch('package.json')
+.then(response => response.json())
+.then(data => {
+  // put the data into contacts variable
+});
+
+
+
 
 let contacts = [
   {
