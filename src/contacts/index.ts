@@ -8,8 +8,8 @@ export class App {
     config.title = 'Contacts';
     config.map([
       { route: ['','list'], moduleId: PLATFORM.moduleName('./list'), nav: true, name:'list', title: 'Select'},
-      { route: '/:id',      moduleId: PLATFORM.moduleName('./list-detail'), name:'contacts' },
-      { route: 'list-add',  moduleId: PLATFORM.moduleName('./list-add'), name:'list-add' }     
+      { route: '/:id',      moduleId: PLATFORM.moduleName('./detail'), name:'contacts' },
+      { route: 'add',  moduleId: PLATFORM.moduleName('./add'), name:'add' }     
       // { route: 'items',  moduleId: PLATFORM.moduleName('item'), name:'items' }
     ]);
 
