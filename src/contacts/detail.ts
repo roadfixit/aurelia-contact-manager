@@ -33,20 +33,35 @@ export class ContactDetail {
     activate(params, routeConfig) {
 
         this.routeConfig = routeConfig;
+        let cookies = document.cookie;
 
-        if (localStorage.length > 0) {
+        // reads from localStorage instead of the JSON file
+        // if (localStorage.length > 0) {
 
-            this.contacts = JSON.parse(localStorage.getItem('Contacts'));
+        //     this.contacts = JSON.parse(localStorage.getItem('Contacts'));
 
+        //     this.contact = this.contacts.filter(x => x.id == params.id)[0];;
+        //     this.routeConfig.navModel.setTitle(this.contact.firstName);
+        //     this.originalContact = this.contact;
+        //     this.ea.publish(new ContactViewed(this.contact));
 
-            this.contact = this.contacts.filter(x => x.id == params.id)[0];;
+            
+
+        // reads from cookies instead of the JSON file
+
+                if (cookies.indexOf('Contacts') != -1) {
+                    
+            console.log('Cookies found - drawing data from them');
+            this.contacts = JSON.parse(this.readCookie('Contacts'));
+
+            this.contact = this.contacts.filter(x => x.id == params.id)[0];
             this.routeConfig.navModel.setTitle(this.contact.firstName);
             this.originalContact = this.contact;
             this.ea.publish(new ContactViewed(this.contact));
 
-            ;
+            
         } else {
-
+            console.log('Drawing data from the JSON');
             return this.api.getContactDetails(params.id).then(contact => {
                 this.contact = <Contact>contact;
                 this.routeConfig.navModel.setTitle(this.contact.firstName);
@@ -66,7 +81,7 @@ export class ContactDetail {
         return this.contact.firstName && this.contact.lastName && this.contact.email && !this.api.isRequesting;
     }
 
-    save(params) {
+    save() {
         this.api.saveContact(this.contact).then(contact => {
             this.contact = <Contact>contact;
             this.routeConfig.navModel.setTitle(this.contact.firstName);
@@ -88,9 +103,11 @@ export class ContactDetail {
             // retrieves data from localStorage/sessionStorage/cookies and updates it after save
 
            let saved = this.contacts.findIndex(x => x.id == this.contact.id);
-           this.contacts.splice(saved,1, this.contact)
- 
-            localStorage.setItem('Contacts', JSON.stringify(this.contacts));
+           this.contacts.splice(saved, 1, this.contact)
+            
+           localStorage.setItem('Contacts', JSON.stringify(this.contacts));
+            sessionStorage.setItem('Contacts', JSON.stringify(this.contacts));
+            this.create_cookie('Contacts', this.contacts);
 
 
         });
@@ -111,6 +128,27 @@ export class ContactDetail {
 
         return true;
     }
+
+    create_cookie(cname, cvalue) {
+
+        document.cookie = cname + "=" + JSON.stringify(cvalue) + ";" + ";path=/";
+      }
+
+      readCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length,c.length);
+            }
+        }
+        return "";
+    }
+      
 }
 
 

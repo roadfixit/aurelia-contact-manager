@@ -1,6 +1,6 @@
 
 // imports our data from an actual .json file
-// import data from '../static/JsonData.json';
+import data from '../static/JsonData.json';
 
 let latency = 200;
 let id = 0;
@@ -13,45 +13,45 @@ function getId(){
 
 //
 // const jsondata = data;
-//  let contacts = data;
+ let contacts = data;
 
-let contacts = [
-  {
-    id:getId(),
-    firstName:'John',
-    lastName:'Tolkien',
-    email:'tolkien@inklings.com',
-    phoneNumber:'867-5309'
-  },
-  {
-    id:getId(),
-    firstName:'Clive',
-    lastName:'Lewis',
-    email:'lewis@inklings.com',
-    phoneNumber:'867-5309'
-  },
-  {
-    id:getId(),
-    firstName:'Owen',
-    lastName:'Barfield',
-    email:'barfield@inklings.com',
-    phoneNumber:'867-5309'
-  },
-  {
-    id:getId(),
-    firstName:'Charles',
-    lastName:'Williams',
-    email:'williams@inklings.com',
-    phoneNumber:'867-5309'
-  },
-  {
-    id:getId(),
-    firstName:'Roger',
-    lastName:'Green',
-    email:'green@inklings.com',
-    phoneNumber:'867-5309'
-  }
-];
+// let contacts = [
+//   {
+//     id:getId(),
+//     firstName:'John',
+//     lastName:'Tolkien',
+//     email:'tolkien@inklings.com',
+//     phoneNumber:'867-5309'
+//   },
+//   {
+//     id:getId(),
+//     firstName:'Clive',
+//     lastName:'Lewis',
+//     email:'lewis@inklings.com',
+//     phoneNumber:'867-5309'
+//   },
+//   {
+//     id:getId(),
+//     firstName:'Owen',
+//     lastName:'Barfield',
+//     email:'barfield@inklings.com',
+//     phoneNumber:'867-5309'
+//   },
+//   {
+//     id:getId(),
+//     firstName:'Charles',
+//     lastName:'Williams',
+//     email:'williams@inklings.com',
+//     phoneNumber:'867-5309'
+//   },
+//   {
+//     id:getId(),
+//     firstName:'Roger',
+//     lastName:'Green',
+//     email:'green@inklings.com',
+//     phoneNumber:'867-5309'
+//   }
+// ];
 
 
 
@@ -67,7 +67,8 @@ export class WebAPI {
           id:x.id,
           firstName:x.firstName,
           lastName:x.lastName,
-          email:x.email
+          email:x.email,
+          phoneNumber:x.phoneNumber
         }});
         resolve(results);
         this.isRequesting = false;
